@@ -11,9 +11,12 @@ public class PowerPanel : MonoBehaviour
     [Range(0, 100)] public float restoreProgress = 0f;
     public float restorePerClick = 22f;
     public float decayPerSecond = 5f;
+    public SpriteRenderer warningIcon; // optional flashing icon while power is out
 
     void Update()
     {
+        if (warningIcon) warningIcon.enabled = !GameManager.Instance.powerOn;
+
         if (GameManager.Instance.powerOn)
         {
             restoreProgress = 0f;
